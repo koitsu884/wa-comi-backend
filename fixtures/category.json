@@ -1,0 +1,16 @@
+[
+    {
+      "model": "common.Category",
+      "pk": 1,
+      "fields": {
+        "name": "Social"
+      }
+    },
+    {
+      "model": "common.Category",
+      "pk": 2,
+      "fields": {
+        "name": "Music"
+      }
+    }
+  ]

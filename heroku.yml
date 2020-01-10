@@ -1,0 +1,12 @@
+setup:
+  addons:
+   - plan: heroku-postgresql
+build:
+  docker:
+    web: Dockerfile
+release:
+  image: web
+  command:
+    - python manage.py makemigrations && python manage.py migrate
+run:
+  web: python manage.py collectstatic --noinput && gunicorn wacomi.wsgi:application --bind 0.0.0.0:$PORT

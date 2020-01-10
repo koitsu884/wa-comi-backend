@@ -1,0 +1,16 @@
+[
+    {
+      "model": "core.Area",
+      "pk": 1,
+      "fields": {
+        "name": "Auckland"
+      }
+    },
+    {
+      "model": "core.Area",
+      "pk": 2,
+      "fields": {
+        "name": "Christchurch"
+      }
+    }
+  ]

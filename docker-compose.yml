@@ -1,0 +1,67 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./staticfiles/:/app/staticfiles
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             gunicorn wacomi.wsgi -b 0.0.0.0:8000"
+    # environment:
+    #   - DB_HOST=db
+    #   - DB_NAME=postgres
+    #   - DB_USER=postgres
+    #   - DB_PASS=devpassword
+    # depends_on:
+    #   - db
+
+  # db:
+  #   image: postgres:10-alpine
+  #   environment:
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=devpassword
+  #   ports:
+  #     - '5433:5432'
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   volumes:
+  #     - ./frontend:/app
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - NODE_ENV=development
+  #   depends_on:
+  #     - backend
+  #   command: npm start
+
+# version: "3.2"
+# services:
+#   backend:
+#     build: ./backend
+#     volumes:
+#       - ./backend:/app/backend
+#     ports:
+#       - "8000:8000"
+#     stdin_open: true
+#     tty: true
+#     command: python3 manage.py runserver 0.0.0.0:8000
+#   frontend:
+#     build: ./frontend
+#     volumes:
+#       - ./frontend:/app
+#       - /app/node_modules
+#     ports:
+#       - "3000:3000"
+#     environment:
+#       - NODE_ENV=development
+#     depends_on:
+#       - backend
+#     command: npm start
